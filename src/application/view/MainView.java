@@ -24,7 +24,7 @@ public class MainView {
 	}
 	
 	public void displayTimeRemaining(String time) {
-		
+		// TODO
 	}
 	
 	// This displays the score
