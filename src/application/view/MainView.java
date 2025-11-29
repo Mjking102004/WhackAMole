@@ -9,31 +9,22 @@ public class MainView {
 	Label scoreLabel;
 	ImageView[] imageViews;
 	
-	public MainView() {
-		this.timeRemainingLabel = new Label();
-		this.scoreLabel = new Label();
-		imageViews = new ImageView[5];
+	public MainView(Label timeLabel, Label scoreLabel, ImageView[] images) {
+		this.timeRemainingLabel = timeLabel;
+		this.scoreLabel = scoreLabel;
+		imageViews = images;
 	}
 	
-	public void setTimeRemainingLabel(Label lb) {
-		this.timeRemainingLabel = lb;
-	}
-	
-	public void scoreLabel(Label lb) {
-		this.scoreLabel = lb;
+	public void displayScore(String score) {
+		scoreLabel.setText(score);
 	}
 	
 	public void displayTimeRemaining(String time) {
-		// TODO
-	}
-	
-	// This displays the score
-	public void displayLabel(String score) {
-		// TODO
+		timeRemainingLabel.setText(time);
 	}
 	
 	public void displayImage(int index, Image image) {
-		// TODO
+		imageViews[index].setImage(image);
 	}
 
 }
