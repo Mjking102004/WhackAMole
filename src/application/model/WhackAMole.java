@@ -11,7 +11,7 @@ public class WhackAMole {
     private Mole[] moles;
     private Thread[] moleThreads;
     private boolean[] exposed;
-    private long[] exposedStartTimes;
+    //private long[] exposedStartTimes;
     private int totalScore;
     private volatile boolean gameOver;
 
@@ -20,7 +20,7 @@ public class WhackAMole {
         moles = new Mole[5];
         moleThreads = new Thread[5];
         exposed = new boolean[5];
-        exposedStartTimes = new long[5];
+        //exposedStartTimes = new long[5];
         gameOver = true;
         totalScore = 0;
     }
@@ -29,9 +29,11 @@ public class WhackAMole {
         exposed[index] = expsd;
     }
 
-    public synchronized void setExposedStartTime(int index, long timeMillis) {
-        exposedStartTimes[index] = timeMillis;
-    }
+    //removing bc we want only the mole thread to do the work
+    //cause rn it looks like we're doing it twice with Mole.run() and this file
+    //public synchronized void setExposedStartTime(int index, long timeMillis) {
+        //exposedStartTimes[index] = timeMillis;
+    //}
 
     public void startGame() {
         if (!gameOver) {
@@ -70,21 +72,20 @@ public class WhackAMole {
         }
     }
 
-
+    //Mole.run() handles timing and scoring
+    //this whackMole class now updates the thread
+    //i think this follows more what the specs are
     public void whackMole(int index) {
-        long elapsed = 0;
-        boolean wasExposed;
-        synchronized (this) {
-            if (index < 0 || index >= exposed.length) return;
-            wasExposed = exposed[index];
-            if (wasExposed) {
-                elapsed = System.currentTimeMillis() - exposedStartTimes[index];
-                exposed[index] = false;
-            }
+        synchronized (this){
+            if(index < 0 || index >= exposed.length){
+                return;
         }
-        if (wasExposed) {
-            updateScore(elapsed);
-            mainView.displayImage(index, null);
+            if(exposed[index]){
+                Thread t = moleThreads[index];
+                if (t != null){
+                    t.interrupt();
+                }
+            }
         }
     }
 
@@ -104,4 +105,5 @@ public class WhackAMole {
     }
 
 }
+
 
