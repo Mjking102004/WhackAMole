@@ -43,7 +43,7 @@ public class WhackAMole {
         totalScore = 0;
         for (int i = 0; i < exposed.length; ++i) {
             exposed[i] = false;
-            exposedStartTimes[i] = 0L;
+            //exposedStartTimes[i] = 0L;
         }
         mainView.displayScore(String.valueOf(totalScore));
         mainView.displayTimeRemaining(String.valueOf(30));
@@ -105,5 +105,6 @@ public class WhackAMole {
     }
 
 }
+
 
 
