@@ -17,7 +17,7 @@ public class CountDownTimer implements Runnable {
     @Override
     public synchronized void run() {
         while (durationSeconds > 0 && !game.gameOver()) {
-            mainView.displayTimeReamining(Integer.toString(durationSeconds));
+            mainView.displayTimeRemaining(Integer.toString(durationSeconds));
             try {
                 // Update the label in the game
                 //game.updateScore(durationSeconds);
@@ -32,8 +32,6 @@ public class CountDownTimer implements Runnable {
                 e.printStackTrace();
                 break;
             }
-            //updating time not score
-            durationSeconds--;
         }
         //label shows 0 at the end
         mainView.displayTimeRemaining("0");
@@ -41,6 +39,7 @@ public class CountDownTimer implements Runnable {
         game.endGame();
     }
 }
+
 
 
 
