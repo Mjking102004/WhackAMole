@@ -31,9 +31,11 @@ public class CountDownTimer implements Runnable {
                 break;
             }
         }
-        
+        //label shows 0 at the end
+        mainView.displayTimeRemaining("0");
         // End the game when the time is up
         game.endGame();
     }
 }
+
 
