@@ -16,7 +16,7 @@ public class Mole implements Runnable {
 	public Mole(WhackAMole game, MainView mainview, int index, Random rand) {
 		this.game = game;
 		this.mainView = mainview;
-		this.moleImage = new Image(getClass().getResourceAsStream("/mole.png"));
+		this.moleImage = new Image("application/mole.png");
 		this.index = index;
 		this.rand = rand;
 	}

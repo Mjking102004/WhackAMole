@@ -97,7 +97,11 @@ public class WhackAMole {
         } else {
             totalScore += 10;
         }
-        mainView.displayScore(String.valueOf(totalScore));
+
+        final String scoreText = String.valueOf(totalScore);
+
+        // <-- update UI safely on JavaFX thread
+        Platform.runLater(() -> mainView.displayScore(scoreText));
     }
 
     public boolean gameOver() {
